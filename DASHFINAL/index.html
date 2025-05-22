@@ -1,0 +1,1736 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Educação Básica no Maranhão</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-graduation-cap"></i>
+                    <h2>EduMaranhão</h2>
+                </div>
+            </div>
+            <div class="sidebar-menu">
+                <ul>
+                    <li class="active" data-section="dashboard">
+                        <a href="#">
+                            <i class="fas fa-chart-line"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li data-section="matriculas">
+                        <a href="#">
+                            <i class="fas fa-user-graduate"></i>
+                            <span>Matrículas</span>
+                        </a>
+                    </li>
+                    <li data-section="docentes">
+                        <a href="#">
+                            <i class="fas fa-chalkboard-teacher"></i>
+                            <span>Docentes</span>
+                        </a>
+                    </li>
+                    <li data-section="escolas">
+                        <a href="#">
+                            <i class="fas fa-school"></i>
+                            <span>Escolas</span>
+                        </a>
+                    </li>
+                    <li data-section="infraestrutura">
+                        <a href="#">
+                            <i class="fas fa-building"></i>
+                            <span>Infraestrutura</span>
+                        </a>
+                    </li>
+                    <li data-section="ideb">
+                        <a href="#">
+                            <i class="fas fa-chart-bar"></i>
+                            <span>IDEB</span>
+                        </a>
+                    </li>
+                    <li data-section="relatorios">
+                        <a href="#">
+                            <i class="fas fa-file-alt"></i>
+                            <span>Relatórios</span>
+                        </a>
+                    </li>
+                    <li data-section="configuracoes">
+                        <a href="#">
+                            <i class="fas fa-cog"></i>
+                            <span>Configurações</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="sidebar-footer">
+                <a href="#" id="btn-sair">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Sair</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Header -->
+            <div class="header">
+                <div class="header-title">
+                    <h1>Dashboard</h1>
+                </div>
+                <div class="header-search">
+                    <div class="search-container">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="search-input" placeholder="Pesquisar...">
+                        <div class="search-results" id="search-results"></div>
+                    </div>
+                </div>
+                <div class="header-actions">
+                    <div class="filter-container">
+                        <select id="ano-filter">
+                            <option value="2024">2024</option>
+                            <option value="2023">2023</option>
+                            <option value="2022">2022</option>
+                            <option value="2021">2021</option>
+                            <option value="2020">2020</option>
+                            <option value="2019">2019</option>
+                            <option value="2018">2018</option>
+                            <option value="2017">2017</option>
+                            <option value="2016">2016</option>
+                            <option value="2015">2015</option>
+                            <option value="2014">2014</option>
+                        </select>
+                    </div>
+                    <div class="user-profile">
+                        <div class="avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <span>Usuário</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dashboard Content -->
+            <div class="dashboard-content">
+                <!-- Dashboard Section -->
+                <div class="content-section active" id="dashboard-section">
+                    <!-- Stats Cards -->
+                    <div class="stats-cards">
+                        <div class="card stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-user-graduate"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>Total de Matrículas</h3>
+                                <div class="stat-value">1.85M</div>
+                                <div class="stat-change negative">-11.9% desde 2014</div>
+                            </div>
+                        </div>
+                        <div class="card stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-chalkboard-teacher"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>Total de Docentes</h3>
+                                <div class="stat-value">109.3K</div>
+                                <div class="stat-change positive">+10.4% desde 2014</div>
+                            </div>
+                        </div>
+                        <div class="card stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-school"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>Total de Escolas</h3>
+                                <div class="stat-value">9.1K</div>
+                                <div class="stat-change negative">-16.3% desde 2014</div>
+                            </div>
+                        </div>
+                        <div class="card stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-wheelchair"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>Educação Especial</h3>
+                                <div class="stat-value">70.6K</div>
+                                <div class="stat-change positive">+157.9% desde 2014</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Main Charts -->
+                    <div class="main-charts">
+                        <div class="card chart-card">
+                            <div class="card-header">
+                                <h3>Evolução de Matrículas</h3>
+                                <div class="card-actions">
+                                    <button class="btn-export">
+                                        <i class="fas fa-download"></i>
+                                        Exportar
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="chart-container">
+                                    <canvas id="matriculas-chart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card chart-card">
+                            <div class="card-header">
+                                <h3>Inclusão em Educação Especial</h3>
+                                <div class="card-actions">
+                                    <button class="btn-export">
+                                        <i class="fas fa-download"></i>
+                                        Exportar
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="chart-container">
+                                    <canvas id="inclusao-chart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Infraestrutura vs Metas -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Infraestrutura vs Metas</h3>
+                            <div class="card-actions">
+                                <button class="btn-export">
+                                    <i class="fas fa-download"></i>
+                                    Exportar
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="chart-container">
+                                <div id="metas-chart"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Mapa e Produtos Section -->
+                    <div class="map-products-section">
+                        <div class="card map-card">
+                            <div class="card-header">
+                                <h3>Distribuição por Município</h3>
+                                <div class="card-actions">
+                                    <button class="btn-export">
+                                        <i class="fas fa-download"></i>
+                                        Exportar
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="chart-container">
+                                    <div id="map-chart"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card products-card">
+                            <div class="card-header">
+                                <h3>Infraestrutura por Localização</h3>
+                                <div class="card-actions">
+                                    <button class="btn-export">
+                                        <i class="fas fa-download"></i>
+                                        Exportar
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="chart-container">
+                                    <div id="volume-chart"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                     <!-- IDEB Section -->
+                <div class="content-section" id="ideb-section">
+                    <h2 class="section-title">IDEB e Taxas de Fluxo Escolar</h2>
+                    
+                    <!-- IDEB Info -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>O que é o IDEB?</h3>
+                        </div>
+                        <div class="card-body">
+                            <p>O IDEB é um indicador sintético que relaciona as taxas de aprovação com as médias de desempenho em língua portuguesa e matemática dos estudantes no Sistema de Avaliação da Educação Básica. É calculado pelo produto entre o indicador de rendimento e a nota média padronizada.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- IDEB Chart -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Evolução do IDEB no Maranhão (2005-2023)</h3>
+                            <div class="card-actions">
+                                <button class="btn-export">
+                                    <i class="fas fa-download"></i>
+                                    Exportar
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="chart-container">
+                                <canvas id="ideb-chart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- IDEB Analise -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Análise da Evolução do IDEB</h3>
+                        </div>
+                        <div class="card-body">
+                            <p>Os dados mostram uma evolução positiva do IDEB no Maranhão ao longo dos anos, tanto nos anos iniciais quanto nos anos finais do ensino fundamental. Nos anos iniciais, o índice passou de 2,7 em 2005 para 5,1 em 2023, representando um aumento de 88,9%. Já nos anos finais, o crescimento foi de 53,6%, saindo de 2,8 em 2005 para 4,3 em 2023.</p>
+                            <p>Observa-se que o crescimento foi mais acentuado nos anos iniciais do que nos anos finais. Também é possível notar que houve uma pequena queda no IDEB dos anos iniciais em 2013 (de 3,9 para 3,8) e em 2021 (de 4,8 para 4,7), possivelmente relacionada ao impacto da pandemia de COVID-19 no último caso.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Taxas de Fluxo -->
+                    <h3 class="subsection-title">Taxas de Transição/Fluxo (2014-2021)</h3>
+                    <p class="subsection-description">As taxas de transição ou fluxo escolar representam o movimento dos alunos entre séries/anos consecutivos e são divididas em três categorias: promoção, repetência e evasão.</p>
+                    
+                    <!-- Taxa de Promoção -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Taxa de Promoção</h3>
+                            <div class="card-actions">
+                                <button class="btn-export">
+                                    <i class="fas fa-download"></i>
+                                    Exportar
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <p>A taxa de promoção indica a proporção de alunos de determinada etapa de ensino que, no ano seguinte, progredirão de série.</p>
+                            <div class="chart-container">
+                                <canvas id="promocao-chart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Taxa de Repetência -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Taxa de Repetência</h3>
+                            <div class="card-actions">
+                                <button class="btn-export">
+                                    <i class="fas fa-download"></i>
+                                    Exportar
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <p>A taxa de repetência indica a proporção de alunos de determinada etapa de ensino que, no ano seguinte, se mantiveram na mesma série.</p>
+                            <div class="chart-container">
+                                <canvas id="repetencia-chart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Taxa de Evasão -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Taxa de Evasão</h3>
+                            <div class="card-actions">
+                                <button class="btn-export">
+                                    <i class="fas fa-download"></i>
+                                    Exportar
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <p>A taxa de evasão indica a proporção de alunos de determinada etapa de ensino que, no ano seguinte, não se matricularam em qualquer escola.</p>
+                            <div class="chart-container">
+                                <canvas id="evasao-chart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Análise das Tendências -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Análise das Tendências</h3>
+                        </div>
+                        <div class="card-body">
+                            <h4>Taxas de Promoção</h4>
+                            <p>As taxas de promoção apresentam uma tendência de crescimento em todos os níveis de ensino entre 2014 e 2021:</p>
+                            <ul>
+                                <li><strong>Anos Iniciais:</strong> Aumento constante, passando de 87,3% em 2014 para 93,5% em 2021 (aumento de 6,2 pontos percentuais).</li>
+                                <li><strong>Anos Finais:</strong> Crescimento significativo, de 77,4% em 2014 para 86,8% em 2021 (aumento de 9,4 pontos percentuais).</li>
+                                <li><strong>Ensino Médio:</strong> Evolução positiva, de 73,9% em 2014 para 83,0% em 2021 (aumento de 9,1 pontos percentuais).</li>
+                            </ul>
+                            
+                            <h4>Taxas de Repetência</h4>
+                            <p>As taxas de repetência mostram uma tendência de queda em todos os níveis de ensino:</p>
+                            <ul>
+                                <li><strong>Anos Iniciais:</strong> Redução significativa, de 9,5% em 2014 para 4,6% em 2021 (queda de 4,9 pontos percentuais).</li>
+                                <li><strong>Anos Finais:</strong> Diminuição expressiva, de 12,8% em 2014 para 5,3% em 2021 (queda de 7,5 pontos percentuais).</li>
+                                <li><strong>Ensino Médio:</strong> Redução acentuada, de 11,5% em 2014 para 4,9% em 2021 (queda de 6,6 pontos percentuais).</li>
+                            </ul>
+                            
+                            <h4>Taxas de Evasão</h4>
+                            <p>As taxas de evasão também apresentam tendência de queda, embora com algumas oscilações:</p>
+                            <ul>
+                                <li><strong>Anos Iniciais:</strong> Redução gradual, de 2,9% em 2014 para 1,8% em 2021 (queda de 1,1 ponto percentual).</li>
+                                <li><strong>Anos Finais:</strong> Diminuição com oscilação recente, de 6,7% em 2014 para 5,8% em 2021 (queda de 0,9 ponto percentual).</li>
+                                <li><strong>Ensino Médio:</strong> Redução com oscilações, de 12,9% em 2014 para 10,1% em 2021 (queda de 2,8 pontos percentuais).</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                </div>
+
+                <!-- Matrículas Section -->
+                <div class="content-section" id="matriculas-section">
+                    <h2 class="section-title">Matrículas na Educação Básica</h2>
+                    
+                    <!-- Stats Cards -->
+                    <div class="stats-cards">
+                        <div class="card stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-user-graduate"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>Total de Matrículas (2024)</h3>
+                                <div class="stat-value">1.850.984</div>
+                            </div>
+                        </div>
+                        <div class="card stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>Variação desde 2014</h3>
+                                <div class="stat-value">-11.9%</div>
+                            </div>
+                        </div>
+                        <div class="card stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-male"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>Masculino</h3>
+                                <div class="stat-value">941.865 (50,9%)</div>
+                            </div>
+                        </div>
+                        <div class="card stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-female"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>Feminino</h3>
+                                <div class="stat-value">909.119 (49,1%)</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Evolução de Matrículas -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Evolução de Matrículas (2014-2024)</h3>
+                            <div class="card-actions">
+                                <button class="btn-export">
+                                    <i class="fas fa-download"></i>
+                                    Exportar
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="chart-container">
+                                <canvas id="matriculas-evolucao-chart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Matrículas por Sexo e Cor/Raça -->
+                    <div class="grid-2-columns">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>Matrículas por Sexo</h3>
+                                <div class="card-actions">
+                                    <button class="btn-export">
+                                        <i class="fas fa-download"></i>
+                                        Exportar
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="chart-container">
+                                    <canvas id="matriculas-sexo-chart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>Matrículas por Cor/Raça</h3>
+                                <div class="card-actions">
+                                    <button class="btn-export">
+                                        <i class="fas fa-download"></i>
+                                        Exportar
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="chart-container">
+                                    <canvas id="matriculas-raca-chart"></canvas>
+                                </div>
+                                <div class="info-text">
+                                    <p class="note">Observa-se uma tendência de redução no percentual de estudantes declarados como brancos (de 13,5% para 11,8%) e um aumento significativo na categoria "Outra" no último ano (de 11,2% para 20,1%).</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Matrículas por Faixa Etária -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Matrículas por Faixa Etária</h3>
+                            <div class="card-actions">
+                                <button class="btn-export">
+                                    <i class="fas fa-download"></i>
+                                    Exportar
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="chart-container">
+                                <canvas id="matriculas-idade-chart"></canvas>
+                            </div>
+                            <div class="table-container">
+                                <table class="data-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Faixa Etária</th>
+                                            <th>Total</th>
+                                            <th>Feminino</th>
+                                            <th>Masculino</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tabela-faixa-etaria">
+                                        <!-- Preenchido via JavaScript -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Educação Especial -->
+                    <h3 class="section-title">Educação Especial</h3>
+                    
+                    <div class="stats-cards">
+                        <div class="card stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-wheelchair"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>% do Total de Matrículas</h3>
+                                <div class="stat-value">3,8%</div>
+                            </div>
+                        </div>
+                        <div class="card stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>Crescimento desde 2014</h3>
+                                <div class="stat-value">+157,9%</div>
+                            </div>
+                        </div>
+                        <div class="card stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>Classe comum</h3>
+                                <div class="stat-value">69.055 (97,8%)</div>
+                            </div>
+                        </div>
+                        <div class="card stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-user-friends"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>Classe especial</h3>
+                                <div class="stat-value">1.565 (2,2%)</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Educação Especial Gráficos -->
+                    <div class="grid-2-columns">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>Evolução da Educação Especial</h3>
+                                <div class="card-actions">
+                                    <button class="btn-export">
+                                        <i class="fas fa-download"></i>
+                                        Exportar
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="chart-container">
+                                    <canvas id="educacao-especial-evolucao-chart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>Distribuição por Tipo de Classe</h3>
+                                <div class="card-actions">
+                                    <button class="btn-export">
+                                        <i class="fas fa-download"></i>
+                                        Exportar
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="chart-container">
+                                    <canvas id="educacao-especial-tipo-chart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Evolução da Inclusão em Classe Comum</h3>
+                            <div class="card-actions">
+                                <button class="btn-export">
+                                    <i class="fas fa-download"></i>
+                                    Exportar
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="chart-container">
+                                <canvas id="educacao-especial-inclusao-chart"></canvas>
+                            </div>
+                            <div class="info-text">
+                                <p class="note">A evolução do percentual de inclusão em classe comum apresenta crescimento constante, de 85,8% em 2014 para 98,9% em 2024.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Variação de Matrículas -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Variação Percentual de Matrículas (2014-2024)</h3>
+                            <div class="card-actions">
+                                <button class="btn-export">
+                                    <i class="fas fa-download"></i>
+                                    Exportar
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="chart-container">
+                                <canvas id="matriculas-variacao-chart"></canvas>
+                            </div>
+                            <div class="info-text">
+                                <p class="note">Observa-se uma redução geral no número de matrículas, mas um crescimento expressivo na educação especial, além de uma tendência de urbanização das matrículas.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Docentes Section -->
+                <div class="content-section" id="docentes-section">
+                    <h2 class="section-title">Docentes da Educação Básica</h2>
+                    
+                    <!-- Stats Cards -->
+                    <div class="stats-cards">
+                        <div class="card stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-chalkboard-teacher"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>Total de Docentes (2024)</h3>
+                                <div class="stat-value">109.316</div>
+                            </div>
+                        </div>
+                        <div class="card stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>Variação desde 2014</h3>
+                                <div class="stat-value">+10,4%</div>
+                            </div>
+                        </div>
+                        <div class="card stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>Com Licenciatura</h3>
+                                <div class="stat-value">70.223 (64,3%)</div>
+                            </div>
+                        </div>
+                        <div class="card stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-award"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>Com Pós-Graduação</h3>
+                                <div class="stat-value">41.522 (38,0%)</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Evolução de Docentes -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Evolução de Docentes (2014-2024)</h3>
+                            <div class="card-actions">
+                                <button class="btn-export">
+                                    <i class="fas fa-download"></i>
+                                    Exportar
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="chart-container">
+                                <canvas id="docentes-evolucao-chart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Docentes por Sexo e Cor/Raça -->
+                    <div class="grid-2-columns">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>Docentes por Sexo</h3>
+                                <div class="card-actions">
+                                    <button class="btn-export">
+                                        <i class="fas fa-download"></i>
+                                        Exportar
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="chart-container">
+                                    <canvas id="docentes-sexo-chart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>Docentes por Cor/Raça</h3>
+                                <div class="card-actions">
+                                    <button class="btn-export">
+                                        <i class="fas fa-download"></i>
+                                        Exportar
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="chart-container">
+                                    <canvas id="docentes-raca-chart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Docentes por Sexo e Rede -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Docentes por Sexo e Rede de Ensino</h3>
+                            <div class="card-actions">
+                                <button class="btn-export">
+                                    <i class="fas fa-download"></i>
+                                    Exportar
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="chart-container">
+                                <canvas id="docentes-sexo-rede-chart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Docentes por Faixa Etária -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Docentes por Faixa Etária</h3>
+                            <div class="card-actions">
+                                <button class="btn-export">
+                                    <i class="fas fa-download"></i>
+                                    Exportar
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="chart-container">
+                                <canvas id="docentes-idade-chart"></canvas>
+                            </div>
+                            <div class="info-text">
+                                <p class="note">A distribuição dos docentes por faixa etária em 2024 mostra maior concentração nas faixas de 35 a 49 anos.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Escolaridade e Formação -->
+                    <h3 class="section-title">Escolaridade e Formação</h3>
+                    
+                    <div class="stats-cards">
+                        <div class="card stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>Com Licenciatura</h3>
+                                <div class="stat-value">70.223 (64,3%)</div>
+                            </div>
+                        </div>
+                        <div class="card stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-award"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>Com Pós-Graduação</h3>
+                                <div class="stat-value">41.522 (38,0%)</div>
+                            </div>
+                        </div>
+                        <div class="card stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-book-reader"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>Com Formação Continuada</h3>
+                                <div class="stat-value">54.686 (50,1%)</div>
+                            </div>
+                        </div>
+                        <div class="card stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>Crescimento Licenciatura</h3>
+                                <div class="stat-value">+16,7 p.p.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Escolaridade Gráficos -->
+                    <div class="grid-2-columns">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>Escolaridade dos Docentes</h3>
+                                <div class="card-actions">
+                                    <button class="btn-export">
+                                        <i class="fas fa-download"></i>
+                                        Exportar
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="chart-container">
+                                    <canvas id="docentes-escolaridade-chart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>Evolução da Escolaridade (2014-2024)</h3>
+                                <div class="card-actions">
+                                    <button class="btn-export">
+                                        <i class="fas fa-download"></i>
+                                        Exportar
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="chart-container">
+                                    <canvas id="docentes-escolaridade-evolucao-chart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contratação de Docentes -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Contratação de Docentes por Rede</h3>
+                            <div class="card-actions">
+                                <button class="btn-export">
+                                    <i class="fas fa-download"></i>
+                                    Exportar
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="chart-container">
+                                <canvas id="docentes-contratacao-chart"></canvas>
+                            </div>
+                            <div class="info-text">
+                                <p class="note">Observa-se uma predominância de contratos temporários na rede estadual (57,1%) e municipal (49,7%), indicando desafios na estabilidade do corpo docente.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Variação de Docentes -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Variação Percentual de Docentes (2014-2024)</h3>
+                            <div class="card-actions">
+                                <button class="btn-export">
+                                    <i class="fas fa-download"></i>
+                                    Exportar
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="chart-container">
+                                <canvas id="docentes-variacao-chart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Escolas Section -->
+                <div class="content-section" id="escolas-section">
+                    <h2 class="section-title">Escolas da Educação Básica</h2>
+                    
+                    <!-- Stats Cards -->
+                    <div class="stats-cards">
+                        <div class="card stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-school"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>Total de Escolas (2024)</h3>
+                                <div class="stat-value">9.067</div>
+                            </div>
+                        </div>
+                        <div class="card stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>Variação desde 2014</h3>
+                                <div class="stat-value">-16,3%</div>
+                            </div>
+                        </div>
+                        <div class="card stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-city"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>Urbanas</h3>
+                                <div class="stat-value">2.720 (30%)</div>
+                            </div>
+                        </div>
+                        <div class="card stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-tree"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>Rurais</h3>
+                                <div class="stat-value">6.347 (70%)</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Evolução de Escolas -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Evolução de Escolas (2014-2024)</h3>
+                            <div class="card-actions">
+                                <button class="btn-export">
+                                    <i class="fas fa-download"></i>
+                                    Exportar
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="chart-container">
+                                <canvas id="escolas-evolucao-chart"></canvas>
+                            </div>
+                            <div class="info-text">
+                                <p class="note">A evolução do número de escolas por rede de ensino entre 2014 e 2024 mostra uma tendência de redução no total.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Escolas por Localização -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Escolas por Localização</h3>
+                            <div class="card-actions">
+                                <button class="btn-export">
+                                    <i class="fas fa-download"></i>
+                                    Exportar
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="chart-container">
+                                <canvas id="escolas-localizacao-chart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Infraestrutura Section -->
+                <div class="content-section" id="infraestrutura-section">
+                    <h2 class="section-title">Infraestrutura Escolar</h2>
+                    
+                    <!-- Stats Cards -->
+                    <div class="stats-cards">
+                        <div class="card stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-book"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>Biblioteca/Sala de Leitura</h3>
+                                <div class="stat-value">22%</div>
+                            </div>
+                        </div>
+                        <div class="card stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-wifi"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>Acesso à Internet</h3>
+                                <div class="stat-value">35%</div>
+                            </div>
+                        </div>
+                        <div class="card stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-laptop"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>Computadores</h3>
+                                <div class="stat-value">30%</div>
+                            </div>
+                        </div>
+                        <div class="card stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-futbol"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>Quadra de Esportes</h3>
+                                <div class="stat-value">15%</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Biblioteca por Rede -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Escolas com Biblioteca/Sala de Leitura por Rede</h3>
+                            <div class="card-actions">
+                                <button class="btn-export">
+                                    <i class="fas fa-download"></i>
+                                    Exportar
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="chart-container">
+                                <canvas id="biblioteca-rede-chart"></canvas>
+                            </div>
+                            <div class="info-text">
+                                <p class="note">Observa-se uma grande disparidade entre as redes de ensino, com 100% das escolas federais possuindo biblioteca/sala de leitura, enquanto apenas 18% das escolas municipais contam com esse recurso.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Municípios com Biblioteca -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Municípios com Maior Percentual de Escolas com Biblioteca</h3>
+                            <div class="card-actions">
+                                <button class="btn-export">
+                                    <i class="fas fa-download"></i>
+                                    Exportar
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="chart-container">
+                                <div id="municipios-biblioteca-chart"></div>
+                            </div>
+                            <div class="info-text">
+                                <p class="note">Disparidades regionais significativas no acesso a bibliotecas, com variação de 90,9% a 53,3% entre os dez municípios com melhor infraestrutura.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Infraestrutura por Localização -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Infraestrutura por Localização</h3>
+                            <div class="card-actions">
+                                <button class="btn-export">
+                                    <i class="fas fa-download"></i>
+                                    Exportar
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="chart-container">
+                                <canvas id="infraestrutura-localizacao-chart"></canvas>
+                            </div>
+                            <div class="info-text">
+                                <p class="note">Observa-se uma grande disparidade entre escolas urbanas e rurais em todos os indicadores de infraestrutura.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+ <!-- IDEB Section (Nova) -->
+                <div class="content-section" id="ideb-section">
+                    <h2 class="section-title">IDEB - Índice de Desenvolvimento da Educação Básica</h2>
+                    
+                    <!-- Stats Cards -->
+                    <div class="stats-cards">
+                        <div class="card stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>IDEB Anos Iniciais (2023)</h3>
+                                <div class="stat-value">5,1</div>
+                                <div class="stat-change positive">+88,9% desde 2005</div>
+                            </div>
+                        </div>
+                        <div class="card stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>IDEB Anos Finais (2023)</h3>
+                                <div class="stat-value">4,3</div>
+                                <div class="stat-change positive">+53,6% desde 2005</div>
+                            </div>
+                        </div>
+                        <div class="card stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-child"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>Crescimento Anos Iniciais</h3>
+                                <div class="stat-value">+2,4 pontos</div>
+                                <div class="stat-change positive">De 2,7 para 5,1</div>
+                            </div>
+                        </div>
+                        <div class="card stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-user-graduate"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>Crescimento Anos Finais</h3>
+                                <div class="stat-value">+1,5 pontos</div>
+                                <div class="stat-change positive">De 2,8 para 4,3</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Evolução do IDEB -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Evolução do IDEB (2005-2023)</h3>
+                            <div class="card-actions">
+                                <button class="btn-export" data-chart="ideb-evolucao-chart">
+                                    <i class="fas fa-download"></i>
+                                    Exportar
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="chart-container">
+                                <canvas id="ideb-evolucao-chart"></canvas>
+                            </div>
+                            <div class="info-text">
+                                <p class="note">Os dados mostram uma evolução positiva do IDEB no Maranhão ao longo dos anos, tanto nos anos iniciais quanto nos anos finais do ensino fundamental. Nos anos iniciais, o índice passou de 2,7 em 2005 para 5,1 em 2023, representando um aumento de 88,9%. Já nos anos finais, o crescimento foi de 53,6%, saindo de 2,8 em 2005 para 4,3 em 2023.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Comparativo IDEB -->
+                    <div class="grid-2-columns">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>Comparativo de Crescimento do IDEB</h3>
+                                <div class="card-actions">
+                                    <button class="btn-export" data-chart="ideb-comparativo-chart">
+                                        <i class="fas fa-download"></i>
+                                        Exportar
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="chart-container">
+                                    <canvas id="ideb-comparativo-chart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>Variação do IDEB por Período</h3>
+                                <div class="card-actions">
+                                    <button class="btn-export" data-chart="ideb-variacao-chart">
+                                        <i class="fas fa-download"></i>
+                                        Exportar
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="chart-container">
+                                    <canvas id="ideb-variacao-chart"></canvas>
+                                </div>
+                                <div class="info-text">
+                                    <p class="note">Observa-se que o crescimento foi mais acentuado nos anos iniciais do que nos anos finais. Também é possível notar que houve uma pequena queda no IDEB dos anos iniciais em 2013 (de 3,9 para 3,8) e em 2021 (de 4,8 para 4,7), possivelmente relacionada ao impacto da pandemia de COVID-19 no último caso.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tabela IDEB -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Dados Completos do IDEB (2005-2023)</h3>
+                            <div class="card-actions">
+                                <button class="btn-export" data-chart="ideb-tabela">
+                                    <i class="fas fa-download"></i>
+                                    Exportar
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-container">
+                                <table class="data-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Ano</th>
+                                            <th>IDEB Anos Iniciais</th>
+                                            <th>IDEB Anos Finais</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tabela-ideb">
+                                        <!-- Preenchido via JavaScript -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Fluxo Escolar Section (Nova) -->
+                <div class="content-section" id="fluxo-section">
+                    <h2 class="section-title">Fluxo Escolar - Taxas de Promoção, Repetência e Evasão</h2>
+                    
+                    <!-- Stats Cards -->
+                    <div class="stats-cards">
+                        <div class="card stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-arrow-up"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>Promoção Anos Iniciais</h3>
+                                <div class="stat-value">93,5%</div>
+                                <div class="stat-change positive">+6,2 p.p. desde 2014</div>
+                            </div>
+                        </div>
+                        <div class="card stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-redo"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>Repetência Anos Iniciais</h3>
+                                <div class="stat-value">4,6%</div>
+                                <div class="stat-change positive">-4,9 p.p. desde 2014</div>
+                            </div>
+                        </div>
+                        <div class="card stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-door-open"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>Evasão Anos Iniciais</h3>
+                                <div class="stat-value">1,8%</div>
+                                <div class="stat-change positive">-1,1 p.p. desde 2014</div>
+                            </div>
+                        </div>
+                        <div class="card stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-door-open"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>Evasão Ensino Médio</h3>
+                                <div class="stat-value">10,1%</div>
+                                <div class="stat-change positive">-2,8 p.p. desde 2014</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Taxas de Promoção -->
+                    <h3 class="section-title">Taxas de Promoção</h3>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Evolução das Taxas de Promoção (2014-2021)</h3>
+                            <div class="card-actions">
+                                <button class="btn-export" data-chart="promocao-evolucao-chart">
+                                    <i class="fas fa-download"></i>
+                                    Exportar
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="chart-container">
+                                <canvas id="promocao-evolucao-chart"></canvas>
+                            </div>
+                            <div class="info-text">
+                                <p class="note">As taxas de promoção apresentam uma tendência de crescimento em todos os níveis de ensino entre 2014 e 2021. Nos anos iniciais, houve um aumento constante, passando de 87,3% em 2014 para 93,5% em 2021 (aumento de 6,2 pontos percentuais).</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid-2-columns">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>Comparativo de Promoção por Nível (2021)</h3>
+                                <div class="card-actions">
+                                    <button class="btn-export" data-chart="promocao-comparativo-chart">
+                                        <i class="fas fa-download"></i>
+                                        Exportar
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="chart-container">
+                                    <canvas id="promocao-comparativo-chart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>Crescimento das Taxas de Promoção</h3>
+                                <div class="card-actions">
+                                    <button class="btn-export" data-chart="promocao-crescimento-chart">
+                                        <i class="fas fa-download"></i>
+                                        Exportar
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="chart-container">
+                                    <canvas id="promocao-crescimento-chart"></canvas>
+                                </div>
+                                <div class="info-text">
+                                    <p class="note">Nos anos finais, houve um crescimento significativo, de 77,4% em 2014 para 86,8% em 2021 (aumento de 9,4 pontos percentuais). No ensino médio, observou-se uma evolução positiva, de 73,9% em 2014 para 83,0% em 2021 (aumento de 9,1 pontos percentuais).</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Taxas de Repetência -->
+                    <h3 class="section-title">Taxas de Repetência</h3>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Evolução das Taxas de Repetência (2014-2021)</h3>
+                            <div class="card-actions">
+                                <button class="btn-export" data-chart="repetencia-evolucao-chart">
+                                    <i class="fas fa-download"></i>
+                                    Exportar
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="chart-container">
+                                <canvas id="repetencia-evolucao-chart"></canvas>
+                            </div>
+                            <div class="info-text">
+                                <p class="note">As taxas de repetência mostram uma tendência de queda em todos os níveis de ensino. Nos anos iniciais, houve uma redução significativa, de 9,5% em 2014 para 4,6% em 2021 (queda de 4,9 pontos percentuais).</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid-2-columns">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>Comparativo de Repetência por Nível (2021)</h3>
+                                <div class="card-actions">
+                                    <button class="btn-export" data-chart="repetencia-comparativo-chart">
+                                        <i class="fas fa-download"></i>
+                                        Exportar
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="chart-container">
+                                    <canvas id="repetencia-comparativo-chart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>Redução das Taxas de Repetência</h3>
+                                <div class="card-actions">
+                                    <button class="btn-export" data-chart="repetencia-reducao-chart">
+                                        <i class="fas fa-download"></i>
+                                        Exportar
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="chart-container">
+                                    <canvas id="repetencia-reducao-chart"></canvas>
+                                </div>
+                                <div class="info-text">
+                                    <p class="note">Nos anos finais, houve uma diminuição expressiva, de 12,8% em 2014 para 5,3% em 2021 (queda de 7,5 pontos percentuais). No ensino médio, observou-se uma redução acentuada, de 11,5% em 2014 para 4,9% em 2021 (queda de 6,6 pontos percentuais).</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Taxas de Evasão -->
+                    <h3 class="section-title">Taxas de Evasão</h3>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Evolução das Taxas de Evasão (2014-2021)</h3>
+                            <div class="card-actions">
+                                <button class="btn-export" data-chart="evasao-evolucao-chart">
+                                    <i class="fas fa-download"></i>
+                                    Exportar
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="chart-container">
+                                <canvas id="evasao-evolucao-chart"></canvas>
+                            </div>
+                            <div class="info-text">
+                                <p class="note">As taxas de evasão também apresentam tendência de queda, embora com algumas oscilações. Nos anos iniciais, houve uma redução gradual, de 2,9% em 2014 para 1,8% em 2021 (queda de 1,1 ponto percentual).</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid-2-columns">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>Comparativo de Evasão por Nível (2021)</h3>
+                                <div class="card-actions">
+                                    <button class="btn-export" data-chart="evasao-comparativo-chart">
+                                        <i class="fas fa-download"></i>
+                                        Exportar
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="chart-container">
+                                    <canvas id="evasao-comparativo-chart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>Redução das Taxas de Evasão</h3>
+                                <div class="card-actions">
+                                    <button class="btn-export" data-chart="evasao-reducao-chart">
+                                        <i class="fas fa-download"></i>
+                                        Exportar
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="chart-container">
+                                    <canvas id="evasao-reducao-chart"></canvas>
+                                </div>
+                                <div class="info-text">
+                                    <p class="note">Nos anos finais, houve uma diminuição com oscilação recente, de 6,7% em 2014 para 5,8% em 2021 (queda de 0,9 ponto percentual). No ensino médio, observou-se uma redução com oscilações, de 12,9% em 2014 para 10,1% em 2021 (queda de 2,8 pontos percentuais).</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Impacto da Pandemia -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Impacto da Pandemia no Fluxo Escolar</h3>
+                            <div class="card-actions">
+                                <button class="btn-export" data-chart="pandemia-impacto-chart">
+                                    <i class="fas fa-download"></i>
+                                    Exportar
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="chart-container">
+                                <canvas id="pandemia-impacto-chart"></canvas>
+                            </div>
+                            <div class="info-text">
+                                <p class="note">É importante destacar que os anos de 2020 e 2021 foram afetados pela pandemia de COVID-19, o que pode explicar algumas oscilações nos indicadores nesse período. Mesmo assim, a tendência geral de melhoria se manteve, o que sugere resiliência do sistema educacional maranhense frente aos desafios impostos pela crise sanitária.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tabelas de Fluxo Escolar -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Dados Completos de Fluxo Escolar (2014-2021)</h3>
+                            <div class="card-actions">
+                                <button class="btn-export" data-chart="fluxo-tabela">
+                                    <i class="fas fa-download"></i>
+                                    Exportar
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-container">
+                                <h4>Taxa de Promoção (%)</h4>
+                                <table class="data-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Ano</th>
+                                            <th>Anos Iniciais</th>
+                                            <th>Anos Finais</th>
+                                            <th>Ensino Médio</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tabela-promocao">
+                                        <!-- Preenchido via JavaScript -->
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                            <div class="table-container">
+                                <h4>Taxa de Repetência (%)</h4>
+                                <table class="data-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Ano</th>
+                                            <th>Anos Iniciais</th>
+                                            <th>Anos Finais</th>
+                                            <th>Ensino Médio</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tabela-repetencia">
+                                        <!-- Preenchido via JavaScript -->
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                            <div class="table-container">
+                                <h4>Taxa de Evasão (%)</h4>
+                                <table class="data-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Ano</th>
+                                            <th>Anos Iniciais</th>
+                                            <th>Anos Finais</th>
+                                            <th>Ensino Médio</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tabela-evasao">
+                                        <!-- Preenchido via JavaScript -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Relatórios Section -->
+                <div class="content-section" id="relatorios-section">
+                    <h2 class="section-title">Relatórios</h2>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Tendências Importantes</h3>
+                        </div>
+                        <div class="card-body">
+                            <ul id="tendencias-list">
+                                <!-- Preenchido via JavaScript -->
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Observações</h3>
+                        </div>
+                        <div class="card-body">
+                            <ul id="observacoes-list">
+                                <!-- Preenchido via JavaScript -->
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Exportar Relatório Completo</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="export-options">
+                                <button class="btn-export-full">
+                                    <i class="fas fa-file-pdf"></i>
+                                    Exportar PDF
+                                </button>
+                                <button class="btn-export-data">
+                                    <i class="fas fa-file-excel"></i>
+                                    Exportar Dados (Excel)
+                                </button>
+                                <button class="btn-export-charts">
+                                    <i class="fas fa-file-image"></i>
+                                    Exportar Gráficos
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Configurações Section -->
+                <div class="content-section" id="configuracoes-section">
+                    <h2 class="section-title">Configurações</h2>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Preferências do Dashboard</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="config-options">
+                                <div class="config-item">
+                                    <label for="tema">Tema:</label>
+                                    <select id="tema">
+                                        <option value="claro">Claro</option>
+                                        <option value="escuro">Escuro</option>
+                                        <option value="sistema">Seguir Sistema</option>
+                                    </select>
+                                </div>
+                                <div class="config-item">
+                                    <label for="animacoes">Animações nos Gráficos:</label>
+                                    <select id="animacoes">
+                                        <option value="ativadas">Ativadas</option>
+                                        <option value="reduzidas">Reduzidas</option>
+                                        <option value="desativadas">Desativadas</option>
+                                    </select>
+                                </div>
+                                <div class="config-item">
+                                    <label for="atualizacao">Atualização Automática:</label>
+                                    <select id="atualizacao">
+                                        <option value="desativada">Desativada</option>
+                                        <option value="diaria">Diária</option>
+                                        <option value="semanal">Semanal</option>
+                                        <option value="mensal">Mensal</option>
+                                    </select>
+                                </div>
+                                <div class="config-item">
+                                    <label for="precisao">Precisão dos Dados:</label>
+                                    <select id="precisao">
+                                        <option value="alta">Alta</option>
+                                        <option value="media">Média</option>
+                                        <option value="baixa">Baixa</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="config-actions">
+                                <button class="btn-save-config">Salvar Configurações</button>
+                                <button class="btn-reset-config">Restaurar Padrões</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Sobre</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="info-text">
+                                <h4>Dashboard de Educação Básica no Maranhão</h4>
+                                <p>Versão: 2.0</p>
+                                <p>Dados: Censo Escolar (INEP) - 2014 a 2024</p>
+                                <p>Desenvolvido por: Equipe EduMaranhão</p>
+                                <p>Contato: contato@edumaranhao.gov.br</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Botão Voltar ao Topo -->
+    <button id="btn-voltar-topo" class="btn-voltar-topo">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Scripts -->
+    <script src="js/dados_estruturados.js"></script>
+    <script src="js/main.js"></script>
+     <!-- Scripts -->
+    <script src="js/dados_estruturados.js"></script>
+    <script src="js/dados_adicionais.js"></script>
+    <script src="js/dados_ideb.js"></script>
+    <script src="ideb_charts.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/ideb_charts.js"></script>
+    <script src="js/sair.js"></script>
+
+
+
+   <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Inicializar gráficos do dashboard
+            inicializarGraficoMatriculas();
+            inicializarGraficoInclusao();
+            inicializarGraficoMetas();
+            inicializarMapa();
+            inicializarGraficoVolume();
+            
+            // Inicializar gráficos de IDEB e fluxo
+            inicializarGraficoIDEB();
+            inicializarGraficoTaxasPromocao();
+            inicializarGraficoTaxasRepetencia();
+            inicializarGraficoTaxasEvasao();
+            inicializarGraficosIDEB();
+            
+            // Implementar funcionalidade de pesquisa
+            implementarPesquisa();
+            
+            // Implementar botão de voltar ao topo
+            implementarBotaoVoltarTopo();
+            
+            // Atualizar cards de estatísticas
+            atualizarStatsCards();
+            
+            // Adicionar eventos de clique aos itens do menu
+            document.querySelectorAll('.sidebar-menu li').forEach(item => {
+                item.addEventListener('click', function() {
+                    const secaoId = this.getAttribute('data-section');
+                    alternarSecao(secaoId);
+                });
+            });
+            
+            // Adicionar evento de mudança ao filtro de ano
+            document.getElementById('ano-filter').addEventListener('change', function() {
+                anoSelecionado = this.value;
+                atualizarStatsCards();
+                // Atualizar outros elementos conforme necessário
+            });
+        });
+        
+    </script>
+   
+
+</body>
+</html>
